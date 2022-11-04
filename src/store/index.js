@@ -9,7 +9,9 @@ export default createStore({
     lastRandomInt: 0
   },
   getters: {
-    
+    squareCount( state ) {
+      return state.count * state.count
+    }
   },
   mutations: {
     increment( state ) {
