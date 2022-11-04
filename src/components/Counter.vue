@@ -10,7 +10,7 @@
         <hr>
         <button type="button" class="btn btn-primary m-2" @click="increment">+1</button>
         <button type="button" class="btn btn-primary m-2" @click="incrementBy">+5</button>
-        <button type="button" class="btn btn-primary m-2">Random</button>
+        <button type="button" class="btn btn-primary m-2" @click="incrementRandomInt">Random</button>
         <hr>
         <h2>count: {{ count }}</h2>
         <hr>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
     computed: {
@@ -39,7 +39,14 @@ export default {
         },
         incrementBy() {
             this.$store.commit('incrementBy', 5)
-        }
+        },
+        // incrementRandomInt() {
+        //     this.$store.dispatch('incrementRandomInt')
+        // }
+        // ...mapActions(['incrementRandomInt'])
+        ...mapActions({
+            incrementRandomInt: 'incrementRandomInt'
+        })
     }
 }
 </script>
