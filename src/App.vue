@@ -11,7 +11,7 @@ export default {
   name: 'App',
   components: {
     Header: defineAsyncComponent( () => import('@/modules/shared/components/Header.vue')),
-    Counter: defineAsyncComponent( () => import('@/components/Counter.vue')),
+    Counter: defineAsyncComponent( () => import('@/modules/counter/components/Counter.vue')),
     Footer: defineAsyncComponent( () => import('@/modules/shared/components/Footer.vue')),
   }
 }

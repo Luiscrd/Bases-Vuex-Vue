@@ -2,9 +2,9 @@
     <div class="container mt-5">
         <h1>Counter - Vuex</h1>
         <hr>
-        <h2>Aceso directo <small>($store.state.count)</small>: {{ $store.state.count }}</h2>
+        <h2>Aceso directo <small>($store.state.counter.count)</small>: {{ $store.state.counter.count }}</h2>
         <hr>
-        <h2>Computada <small>(countCoumputed() { return this.$store.state.count })</small>: {{ countCoumputed }}</h2>
+        <h2>Computada <small>(return this.$store.state.counter.count)</small>: {{ countCoumputed }}</h2>
         <hr>
         <h1>MapState</h1>
         <hr>
@@ -19,6 +19,7 @@
         <hr>
         <h2>Direct Getter "squareCount" ( {{ count }} x {{ count }} ): {{ $store.getters.squareCount }}</h2>
         <hr>
+        <br>
     </div>
 </template>
 
@@ -28,27 +29,27 @@ import { mapActions, mapState } from 'vuex'
 export default {
     computed: {
         countCoumputed() {
-            return this.$store.state.count
+            return this.$store.state.counter.count 
         },
-        ...mapState(['count', 'lastMutation', 'isLoading'])
+        ...mapState('counter', ['count', 'lastMutation', 'isLoading'])
         // ...mapState({
-        //     count: state => state.count,
-        //     lastMutation: state => state.lastMutation,
-        //     isLoading: state => state.isLoading
+        //     count: state => state.counter.count,
+        //     lastMutation: state => state.counter.lastMutation,
+        //     isLoading: state => state.counter.isLoading
         // })
     },
     methods: {
         increment() {
-            this.$store.commit('increment')
+            this.$store.commit('counter/increment')
         },
         incrementBy() {
-            this.$store.commit('incrementBy', 5)
+            this.$store.commit('counter/incrementBy', 5)
         },
         // incrementRandomInt() {
-        //     this.$store.dispatch('incrementRandomInt')
+        //     this.$store.dispatch('counter/incrementRandomInt')
         // }
-        // ...mapActions(['incrementRandomInt'])
-        ...mapActions({
+        // ...mapActions('counter', ['incrementRandomInt'])
+        ...mapActions('counter', {
             incrementRandomInt: 'incrementRandomInt'
         })
     }
