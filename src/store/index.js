@@ -9,23 +9,29 @@ export default createStore({
     lastRandomInt: 0
   },
   getters: {
-
+    
   },
   mutations: {
     increment( state ) {
       state.count++
-      state.lastMutation = 'Increment'
+      state.lastMutation = 'Increment 1' 
     },
     incrementBy( state, value ) {
       state.count += value
       state.lastMutation = 'IncrementBy ' + value
       state.lastRandomInt = value
     },
+    setLoading( state, value ) {
+      state.isLoading = value
+      state.lastMutation = 'setLoading ' + value
+    }
   },
   actions: {
-    async incrementRandomInt( context ) {
+    async incrementRandomInt({ commit }) {
+      commit('setLoading', true)
       const randomInt = await getRandomInt()
-      context.commit('incrementBy', randomInt)
+      commit('setLoading', false)
+      commit('incrementBy', randomInt)
     }
   },
   modules: {
