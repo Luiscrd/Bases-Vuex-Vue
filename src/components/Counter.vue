@@ -10,11 +10,14 @@
         <hr>
         <button type="button" class="btn btn-primary m-2" @click="increment" :disabled="isLoading">+1</button>
         <button type="button" class="btn btn-primary m-2" @click="incrementBy" :disabled="isLoading">+5</button>
-        <button type="button" class="btn btn-primary m-2" @click="incrementRandomInt" :disabled="isLoading">Random</button>
+        <button type="button" class="btn btn-primary m-2" @click="incrementRandomInt"
+            :disabled="isLoading">Random</button>
         <hr>
         <h2>count: {{ count }}</h2>
         <hr>
         <h2>lastMutation: {{ lastMutation }}</h2>
+        <hr>
+        <h2>Direct Getter "squareCount" ( {{ count }} x {{ count }} ): {{ $store.getters.squareCount }}</h2>
         <hr>
     </div>
 </template>
@@ -27,7 +30,7 @@ export default {
         countCoumputed() {
             return this.$store.state.count
         },
-        ...mapState(['count', 'lastMutation','isLoading'])
+        ...mapState(['count', 'lastMutation', 'isLoading'])
         // ...mapState({
         //     count: state => state.count,
         //     lastMutation: state => state.lastMutation,
